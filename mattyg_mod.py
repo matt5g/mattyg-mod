@@ -26,6 +26,7 @@ from sims4.resources import Types
 # Utility functions
 import sims4.log
 import random
+import zone
 
 # Set up logging
 logger = sims4.log.Logger('MattyGMod', default_owner='MattyG')
@@ -62,13 +63,18 @@ def on_interaction_start(sim, interaction):
         
 def register_global_listener():
     global listenerStarted
+    
+    if listenerStarted: return
     listenerStarted = True
     notify("Listener was triggered")
     sim_manager = services.sim_info_manager()
     for sim_info in sim_manager.get_all():
-        sim = sim_info.get_sim_instance()
-        if sim is not None:
-            sim.register_for_event(TestEvent.InteractionStart, on_interaction_start)
+        if sim_info.first_name == "Matthew" and sim_info.last_name == "Grant":
+            sim = sim_info.get_sim_instance()
+            if sim is not None:
+                sim.register_for_event(TestEvent.InteractionStart, on_interaction_start)
+                notify("Listener attached to Matthew Grant")
+                return  # stop after attaching to the one 
     
 
 # Call this once at mod load
@@ -78,5 +84,5 @@ def on_zone_load(*_, **__):
     register_global_listener()
 
 # Register the zone load callback
-import zone
+
 if not listenerStarted: zone.Zone.on_loading_screen_animation_finished = on_zone_load
