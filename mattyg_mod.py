@@ -29,7 +29,7 @@ import random
 # Set up logging
 logger = sims4.log.Logger('MattyGMod', default_owner='MattyG')
 
-
+listenerStarted = False
 
 VOMIT_BUFF_ID = "Loot_Buff_Sickness_NeedToPuke"  # This is the “Sick” buff in the base game
 VAPE_INTERACTION_NAME = 'Basemental:Tobacco_Vaporizer_Smoke_Interaction'
@@ -54,6 +54,7 @@ def register_global_listener():
         sim = sim_info.get_sim_instance()
         if sim is not None:
             sim.register_for_event(TestEvent.InteractionStart, on_interaction_start)
+        listenerStarted = True
 
 # Call this once at mod load
 
@@ -62,4 +63,4 @@ def on_zone_load(*_, **__):
 
 # Register the zone load callback
 import zone
-zone.Zone.on_loading_screen_animation_finished = on_zone_load
+if listenerStarted: zone.Zone.on_loading_screen_animation_finished = on_zone_load

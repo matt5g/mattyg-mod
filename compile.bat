@@ -1,0 +1,1 @@
+call py -3.7 -c "import py_compile; py_compile.compile('mattyg_mod.py', cfile='compiled/MattyGMod.pyc')"
