@@ -48,7 +48,7 @@ def notify(text):
         text=lambda **_: text
     )
     notification.show_dialog()
-notify("Mod has attempted to load")    
+    
 
 
     
