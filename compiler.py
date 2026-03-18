@@ -14,4 +14,4 @@ if copyToMods:
     for file in os.listdir(mods_folder + '\\mattygmod'):
         if file.startswith('MattyGMod_v') and file.endswith('.ts4script') and file != f'MattyGMod_v{version.replace(".","_")}.ts4script':
             os.remove(os.path.join(mods_folder + '\\mattygmod', file))
-    
+# test comment for git commit
