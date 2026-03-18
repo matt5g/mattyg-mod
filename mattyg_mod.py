@@ -41,13 +41,14 @@ VAPE_INTERACTION_ID = 0xFA672665D7CADF8E
 
 
 def notify(text):
+    if not debugMode: return
     sim = services.client_manager().get_first_client().active_sim
     notification = UiDialogNotification.TunableFactory().default(
         sim,
         text=lambda **_: text
     )
     notification.show_dialog()
-    
+notify("Mod has attempted to load")    
 
 
     
@@ -76,4 +77,4 @@ def on_zone_load(*_, **__):
 
 # Register the zone load callback
 import zone
-if listenerStarted: zone.Zone.on_loading_screen_animation_finished = on_zone_load
+if not listenerStarted: zone.Zone.on_loading_screen_animation_finished = on_zone_load
