@@ -62,13 +62,14 @@ def on_interaction_start(sim, interaction):
         
 def register_global_listener():
     global listenerStarted
+    listenerStarted = True
     notify("Listener was triggered")
     sim_manager = services.sim_info_manager()
     for sim_info in sim_manager.get_all():
         sim = sim_info.get_sim_instance()
         if sim is not None:
             sim.register_for_event(TestEvent.InteractionStart, on_interaction_start)
-        listenerStarted = True
+    
 
 # Call this once at mod load
 
