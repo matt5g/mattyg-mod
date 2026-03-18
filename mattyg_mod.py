@@ -61,6 +61,7 @@ def on_interaction_start(sim, interaction):
             sim.run_loot_action_on_sim(VOMIT_BUFF_ID, sim)
         
 def register_global_listener():
+    global listenerStarted
     notify("Listener was triggered")
     sim_manager = services.sim_info_manager()
     for sim_info in sim_manager.get_all():
