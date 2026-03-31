@@ -10,6 +10,7 @@ copyToMods = True # optionally copy the file to the mods folder
 if copyToMods:
     import shutil
     mods_folder = os.path.expanduser('~\\Documents\\Electronic Arts\\The Sims 4\\Mods')
+    os.makedirs(mods_folder + '\\mattygmod', exist_ok=True)
     shutil.copy(f'compiled/MattyGMod_v{version.replace(".","_")}.ts4script', mods_folder + f'\\mattygmod\\MattyGMod_v{version.replace(".","_")}.ts4script')
     for file in os.listdir(mods_folder + '\\mattygmod'):
         if file.startswith('MattyGMod_v') and file.endswith('.ts4script') and file != f'MattyGMod_v{version.replace(".","_")}.ts4script':
